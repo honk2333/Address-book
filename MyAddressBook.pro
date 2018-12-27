@@ -31,7 +31,9 @@ SOURCES += \
     displaydialog.cpp \
     searchdialog.cpp \
     changedialog.cpp \
-    person.cpp
+    person.cpp \
+    groupdialog.cpp \
+    infodialog.cpp
 
 HEADERS += \
         widget.h \
@@ -39,16 +41,25 @@ HEADERS += \
     displaydialog.h \
     searchdialog.h \
     changedialog.h \
-    person.h
+    person.h \
+    groupdialog.h \
+    infodialog.h
 
 FORMS += \
         widget.ui \
     adddatadialog.ui \
     displaydialog.ui \
     searchdialog.ui \
-    changedialog.ui
+    changedialog.ui \
+    groupdialog.ui \
+    infodialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources.qrc
+
+DISTFILES +=

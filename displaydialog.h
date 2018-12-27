@@ -28,7 +28,7 @@ public:
     explicit DisplayDialog(QWidget *parent = nullptr);
     ~DisplayDialog();
     void showMessage();
-
+    void showMessage(int groupindex);
 private slots:
     void showContextMenuSlot(const QPoint& pos);  //显示右键菜单的槽函数
     void addItemSlot();          //添加联系人的槽函数

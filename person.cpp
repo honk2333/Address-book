@@ -1,6 +1,12 @@
 #include "person.h"
 #include "widget.h"
-
+int Ingroup(QString name){   //返回所在分组编号
+    if(name=="亲人") return 0;
+    else if(name=="朋友") return 1;
+    else if(name=="同学") return 2;
+    else if(name=="同事") return 3;
+    else  return 4;
+}
 void ReadFile(){
     //从文件中读取信息
     ElemType *p1=nullptr,*p2=nullptr;
@@ -18,8 +24,9 @@ void ReadFile(){
     QString Time;
     bool tag=true;   //第一次读入文件
     while(!stream.atEnd()){  //当文件不为空
-        stream>>Name>>Phone>>City>>Email>>Type>>Time;
-        //p2=(person*)malloc(sizeof(ElemType));
+        stream>>Name>>Phone>>City>>Type>>Email>>Time;
+        Widget::group[Ingroup(Type)].num++;   //增加对应分组联系人数目
+        //p2=(person*)malloc(sizeof(ElemType));   malloc的使用出了一些问题，等待解决
         p2=new ElemType;
         *p2=person(Name,Phone,City,Email,Type,Time);//用构造函数给新申请的节点赋值
         p2->next=nullptr;   //最后一个节点的指针域置空

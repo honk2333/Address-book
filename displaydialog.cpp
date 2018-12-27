@@ -44,7 +44,15 @@ void DisplayDialog::showMessage(){
         p=p->next;
     }
 }
-
+void DisplayDialog::showMessage(int groupindex){
+    ui->listWidget->clear();
+    List p=Widget::head->next;
+    while(p!=nullptr){
+        if(p->type == Widget::group[groupindex].groupname)
+            ui->listWidget->addItem(p->name);
+        p=p->next;
+    }
+}
 void DisplayDialog::addItemSlot(){      //添加联系人的槽函数
     AddDialog.ClearEdit();
     AddDialog.show();

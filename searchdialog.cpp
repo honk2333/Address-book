@@ -127,7 +127,7 @@ void SearchDialog::FindMessenger(){   //根据Linetext中的信息查找联系�
     }
 }
 void SearchDialog::FindMessenger(int pos){   //根据联系人的位置输出联系人的信息，与上面的同名函数重载
-    ClearText();     //先清空显示栏
+    /*ClearText();     //先清空显示栏
     QTextCodec* code=QTextCodec::codecForName("utf8");
     QFile file("C:/Users/honk/Desktop/Qt/MyAddressBook/Messenger.txt");
     if(!file.open(QIODevice::ReadOnly|QIODevice::Text)) return ;
@@ -145,6 +145,25 @@ void SearchDialog::FindMessenger(int pos){   //根据联系人的位置输出联
     ui->EmailEdit->setText(list2[4]);
     ui->TimeEdit->setText(list2[5]);
     file.close();                 //关闭文件
+    */
+    ClearText();
+    int j=0;
+    List p=Widget::head->next;
+    while(p&&j<pos){
+        j++;
+        p=p->next;
+    }
+    if(p){   //指针不为空说明找到了位置为pos的联系人
+        ui->NameEdit->setText(p->name);
+        ui->PhoneEdit->setText(p->phone);
+        ui->CityEdit->setText(p->city);
+        ui->TypeEdit->setText(p->type);
+        ui->EmailEdit->setText(p->email);
+        ui->TimeEdit->setText(p->Time);
+    }
+    else if(p==nullptr){   //未找到联系人
+        QMessageBox::warning(this,"result","找不到符合信息的联系人!",QMessageBox::Yes);  //如果找不到符合信息的联系人就弹出对话框
+    }
 }
 
 void SearchDialog::on_FindButton_clicked()
