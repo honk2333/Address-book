@@ -30,14 +30,16 @@ SOURCES += \
     adddatadialog.cpp \
     displaydialog.cpp \
     searchdialog.cpp \
-    changedialog.cpp
+    changedialog.cpp \
+    person.cpp
 
 HEADERS += \
         widget.h \
     adddatadialog.h \
     displaydialog.h \
     searchdialog.h \
-    changedialog.h
+    changedialog.h \
+    person.h
 
 FORMS += \
         widget.ui \

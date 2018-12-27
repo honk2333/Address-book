@@ -18,6 +18,8 @@ namespace Ui {
 class DisplayDialog;
 }
 
+
+
 class DisplayDialog : public QDialog
 {
     Q_OBJECT

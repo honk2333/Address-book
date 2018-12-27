@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
+
 namespace Ui {
 class AddDataDialog;
 }

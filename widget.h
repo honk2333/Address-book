@@ -8,6 +8,8 @@
 #include "adddatadialog.h"   //登陆子窗口的头文件
 #include "displaydialog.h"
 #include "searchdialog.h"
+#include "person.h"
+
 namespace Ui {
 class Widget;
 }
@@ -19,6 +21,7 @@ class Widget : public QWidget
 public:
     explicit Widget(QWidget *parent = nullptr);
     ~Widget();
+    static List head;
 
 private slots:
     void on_AddButton_clicked();

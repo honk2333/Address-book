@@ -46,6 +46,15 @@
      <widget class="QLineEdit" name="CitylineEdit"/>
     </item>
     <item>
+     <widget class="QLineEdit" name="TypelineEdit"/>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="EmaillineEdit"/>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="TimelineEdit"/>
+    </item>
+    <item>
      <widget class="QPushButton" name="ChangeButton">
       <property name="text">
        <string>修改</string>
@@ -58,7 +67,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>180</y>
+     <y>200</y>
      <width>431</width>
      <height>51</height>
     </rect>
@@ -87,13 +96,13 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>60</x>
      <y>10</y>
      <width>351</width>
-     <height>161</height>
+     <height>191</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -116,7 +125,28 @@
       <item>
        <widget class="QLabel" name="Citylabel">
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;城市&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;地址&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;分组&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;电子邮箱&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;时间&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
@@ -132,6 +162,15 @@
       </item>
       <item>
        <widget class="QLineEdit" name="CityEdit"/>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="TypeEdit"/>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="EmailEdit"/>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="TimeEdit"/>
       </item>
      </layout>
     </item>

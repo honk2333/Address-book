@@ -1,5 +1,6 @@
 #include "displaydialog.h"
 #include "ui_displaydialog.h"
+#include "widget.h"
 
 DisplayDialog::DisplayDialog(QWidget *parent) :
     QDialog(parent),
@@ -23,7 +24,7 @@ DisplayDialog::~DisplayDialog()
 
 void DisplayDialog::showMessage(){
     ui->listWidget->clear();
-    QTextCodec* code=QTextCodec::codecForName("utf8");
+    /*  QTextCodec* code=QTextCodec::codecForName("utf8");
     QFile file("C:/Users/honk/Desktop/Qt/MyAddressBook/Messenger.txt");
     if(!file.open(QIODevice::ReadOnly|QIODevice::Text)) return ;
     QTextStream stream(&file);
@@ -35,6 +36,12 @@ void DisplayDialog::showMessage(){
     for(int i=0;i<list1.size();i++){  //对于每个联系人的操作
         QStringList list2=list1[i].split(" ");  //用空格来分割同个联系人的不同信息
         ui->listWidget->addItem(list2[0]);
+    }*/
+
+    List p=Widget::head->next;
+    while(p!=nullptr){
+        ui->listWidget->addItem(p->name);
+        p=p->next;
     }
 }
 
@@ -43,15 +50,15 @@ void DisplayDialog::addItemSlot(){      //添加联系人的槽函数
     AddDialog.show();
     this->close();
 }
-void DisplayDialog::chaItemSlot(){
+void DisplayDialog::chaItemSlot(){   //修改联系人信息
     //emit SentdataSignal(pos_row);
     ChaDialog->receivedataslot(pos_row);
     ChaDialog->ClearEdit();
     ChaDialog->show();
     this->close();
 }
-void DisplayDialog::delItemSlot(){
-    QTextCodec* code=QTextCodec::codecForName("utf8");
+void DisplayDialog::delItemSlot(){    //删除联系人
+    /*QTextCodec* code=QTextCodec::codecForName("utf8");
     QFile file("C:/Users/honk/Desktop/Qt/MyAddressBook/Messenger.txt");
     if(!file.open(QIODevice::ReadOnly|QIODevice::Text))  //以只读模式打开文件
         QMessageBox::warning(this,"sdf","can't open!",QMessageBox::Yes);  //如果文件无法打开，弹出对话框
@@ -76,14 +83,23 @@ void DisplayDialog::delItemSlot(){
     QTextStream sstream(&file);
     sstream.setCodec(code);  //设置输出流的字符格式
     sstream<<b;             //向文件流中输出内容
-    file.close();
+    file.close();*/
+    int j=0;
+    List p=Widget::head;
+    while(p&&j<pos_row){
+        j++;
+        p=p->next;
+    }
+    List tmp=p->next;
+    p->next=p->next->next;
+    free(tmp);
+    SaveFile();
     showMessage();
 }
 
-void DisplayDialog::showContextMenuSlot(const QPoint& pos)
+void DisplayDialog::showContextMenuSlot(const QPoint& pos)   //右键菜单槽函数
 {
     Menu = new QMenu;    //菜单控件
-
     if (ui->listWidget->itemAt(pos))   //如果鼠标在条目上
     {
         //记录鼠标所指条目的信息
@@ -100,7 +116,7 @@ void DisplayDialog::showContextMenuSlot(const QPoint& pos)
     Menu->exec(QCursor::pos());
 }
 
-void DisplayDialog::on_listWidget_doubleClicked(const QModelIndex &index)
+void DisplayDialog::on_listWidget_doubleClicked(const QModelIndex &index)  //双击条目的槽函数
 {
     SeaDialog.show();
     SeaDialog.FindMessenger(index.row());

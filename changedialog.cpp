@@ -1,6 +1,6 @@
 #include "changedialog.h"
 #include "ui_changedialog.h"
-
+#include "widget.h"
 ChangeDialog::ChangeDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ChangeDialog)
@@ -16,12 +16,15 @@ void ChangeDialog::ClearEdit(){
     ui->NamelineEdit->clear();
     ui->PhonelineEdit->clear();
     ui->CitylineEdit->clear();
+    ui->TypelineEdit->clear();
+    ui->EmaillineEdit->clear();
+    ui->TimelineEdit->clear();
 }
 void ChangeDialog::receivedataslot(int data){  //将传来的数据赋值给记录位置的变量
     pos_row=data;
 }
 void ChangeDialog::ChaMessenger(int pos){
-    QTextCodec* code=QTextCodec::codecForName("utf8");
+    /*QTextCodec* code=QTextCodec::codecForName("utf8");
     QFile file("C:/Users/honk/Desktop/Qt/MyAddressBook/Messenger.txt");  //文件
     if(!file.open(QIODevice::ReadOnly|QIODevice::Text)) return ;  //若文件无法打开则返回
 
@@ -65,6 +68,26 @@ void ChangeDialog::ChaMessenger(int pos){
     file.close();
     //删除该联系人后结果栏中的内容清空
     ClearEdit();
+    */
+    int j=0;
+    List p=Widget::head->next;
+    while(j<pos&&p){   //定位到要修改的联系人
+        j++;
+        p=p->next;
+    }
+    if(!ui->NamelineEdit->text().isEmpty())  //如果姓名信息需要修改
+        p->name=ui->NamelineEdit->text().toUtf8();
+    if(!ui->PhonelineEdit->text().isEmpty())  //如果电话信息需要修改
+        p->phone=ui->PhonelineEdit->text().toUtf8();
+    if(!ui->CitylineEdit->text().isEmpty())  //如果地址信息需要修改
+        p->city=ui->CitylineEdit->text().toUtf8();
+    if(!ui->TypelineEdit->text().isEmpty())  //如果分组信息需要修改
+        p->type=ui->TypelineEdit->text().toUtf8();
+    if(!ui->EmaillineEdit->text().isEmpty())  //如果邮箱信息需要修改
+        p->email=ui->EmaillineEdit->text().toUtf8();
+    if(!ui->TimelineEdit->text().isEmpty())  //如果地址信息需要修改
+        p->Time=ui->TimelineEdit->text().toUtf8();
+    SaveFile();
 }
 
 void ChangeDialog::on_ChangeButton_clicked()
