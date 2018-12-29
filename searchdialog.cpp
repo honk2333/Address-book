@@ -27,7 +27,7 @@ void SearchDialog::ClearText(){    //先将输入栏中的信息清空
     ui->TimelineEdit->clear();
 }
 
-void SearchDialog::FindMessenger(){   //根据Linetext中的信息查找联系人
+List SearchDialog::FindMessenger(){   //根据Linetext中的信息查找联系人
     /*QTextCodec* code=QTextCodec::codecForName("utf8");
     QFile file("C:/Users/honk/Desktop/Qt/MyAddressBook/Messenger.txt");
     if(!file.open(QIODevice::ReadOnly|QIODevice::Text)) return ;
@@ -65,6 +65,7 @@ void SearchDialog::FindMessenger(){   //根据Linetext中的信息查找联系�
     file.close();                 //关闭文件
    */
     List p=Widget::head->next;
+
     while(p){
         if(!ui->PhoneEdit->text().isEmpty()&&ui->PhoneEdit->text()==p->phone){
             ui->NameEdit->setText(p->name);
@@ -122,10 +123,42 @@ void SearchDialog::FindMessenger(){   //根据Linetext中的信息查找联系�
         }
         p=p->next;
     }
+
     if(p==nullptr) {  //如果未查找到联系人
         QMessageBox::warning(this,"result","找不到符合信息的联系人!",QMessageBox::Yes);  //如果找不到符合信息的联系人就弹出对话框
     }
+    return p;
 }
+void SearchDialog::on_FindButton_clicked()
+{
+    L=FindMessenger();
+    qDebug()<<L->name;
+}
+
+List SearchDialog::FindNextMessenger(){   //查找重名联系人
+    List p=L->next;
+    while(p){
+        if(!ui->NameEdit->text().isEmpty()&&ui->NameEdit->text()==p->name){
+            ui->NameEdit->setText(p->name);
+            ui->PhoneEdit->setText(p->phone);
+            ui->CityEdit->setText(p->city);
+            ui->TypeEdit->setText(p->type);
+            ui->EmailEdit->setText(p->email);
+            ui->TimeEdit->setText(p->Time);
+            break;
+        }
+        p=p->next;
+    }
+    if(p==nullptr) {  //如果未查找到联系人
+        QMessageBox::warning(this,"result","找不到符合信息的联系人!",QMessageBox::Yes);  //如果找不到符合信息的联系人就弹出对话框
+    }
+    return p;
+}
+void SearchDialog::on_FindNextButton_clicked()
+{
+       L=FindNextMessenger();
+}
+
 void SearchDialog::FindMessenger(int pos){   //根据联系人的位置输出联系人的信息，与上面的同名函数重载
     /*ClearText();     //先清空显示栏
     QTextCodec* code=QTextCodec::codecForName("utf8");
@@ -164,11 +197,6 @@ void SearchDialog::FindMessenger(int pos){   //根据联系人的位置输出联
     else if(p==nullptr){   //未找到联系人
         QMessageBox::warning(this,"result","找不到符合信息的联系人!",QMessageBox::Yes);  //如果找不到符合信息的联系人就弹出对话框
     }
-}
-
-void SearchDialog::on_FindButton_clicked()
-{
-    FindMessenger();
 }
 
 void SearchDialog::DeleteMessenger(){

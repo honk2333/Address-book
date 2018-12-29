@@ -11,6 +11,7 @@
 #include "person.h"
 #include "groupdialog.h"
 #include "infodialog.h"
+#include "outputdialog.h"
 namespace Ui {
 class Widget;
 }
@@ -36,6 +37,8 @@ private slots:
 
     void on_infopushButton_clicked();
 
+    void on_OutputButton_clicked();
+
 private:
     Ui::Widget *ui;
     AddDataDialog AddDialog;
@@ -43,6 +46,7 @@ private:
     SearchDialog SeaDialog;
     GroupDialog GroDialog;
     InfoDialog InfDialog;
+    OutputDialog OutDialog;
 };
 
 #endif // WIDGET_H

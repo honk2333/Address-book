@@ -130,3 +130,205 @@ void DisplayDialog::on_listWidget_doubleClicked(const QModelIndex &index)  //双
     SeaDialog.FindMessenger(index.row());
     this->close();
 }
+
+List DisplayDialog::sort_Time(List head)
+{
+    struct person *Nfirst;
+    struct person *Ntail;
+    struct person *min;
+    struct person *minbefore;
+    struct person *p;
+
+    Nfirst=nullptr;
+    while(head!=nullptr)
+    {
+        for(p=head,min=head; p->next!=nullptr; p=p->next)
+        {
+            if (p->next->Time < min->Time)
+            {
+                minbefore=p;
+                min=p->next;
+            }
+        }
+        if(Nfirst==nullptr)
+        {
+            Nfirst=min;
+            Ntail=min;
+        }
+        else
+        {
+            Ntail->next=min;
+            Ntail=min;
+
+        }
+        if(min==head)
+        {
+            head=head->next;
+        }
+        else
+        {
+            minbefore->next=min->next;
+        }
+    }
+    if(Nfirst!=nullptr)
+    {
+        Ntail->next=nullptr;
+    }
+
+    return (Nfirst);
+}
+List DisplayDialog::sort_Name(List head)
+{
+    struct person *Nfirst;
+    struct person *Ntail;
+    struct person *min;
+    struct person *minbefore;
+    struct person *p;
+
+    Nfirst=nullptr;
+    while(head!=nullptr)
+    {
+        for(p=head,min=head; p->next!=nullptr; p=p->next)
+        {
+            if (p->next->name < min->name)
+            {
+                minbefore=p;
+                min=p->next;
+            }
+        }
+        if(Nfirst==nullptr)
+        {
+            Nfirst=min;
+            Ntail=min;
+        }
+        else
+        {
+            Ntail->next=min;
+            Ntail=min;
+        }
+        if(min==head)
+        {
+            head=head->next;
+        }
+        else
+        {
+            minbefore->next=min->next;
+        }
+    }
+    if(Nfirst!=nullptr)
+    {
+        Ntail->next=nullptr;
+    }
+
+    return (Nfirst);
+}
+List DisplayDialog::sort_Phone(List head)
+{
+    struct person *Nfirst;
+    struct person *Ntail;
+    struct person *min;
+    struct person *minbefore;
+    struct person *p;
+
+    Nfirst=nullptr;
+    while(head!=nullptr)
+    {
+        for(p=head,min=head; p->next!=nullptr; p=p->next)
+        {
+            if (p->next->phone < min->phone)
+            {
+                minbefore=p;
+                min=p->next;
+            }
+        }
+        if(Nfirst==nullptr)
+        {
+            Nfirst=min;
+            Ntail=min;
+        }
+        else
+        {
+            Ntail->next=min;
+            Ntail=min;
+
+        }
+        if(min==head)
+        {
+            head=head->next;
+        }
+        else
+        {
+            minbefore->next=min->next;
+        }
+    }
+    if(Nfirst!=nullptr)
+    {
+        Ntail->next=nullptr;
+    }
+    return (Nfirst);
+}
+List DisplayDialog::sort_Time_Phone(){
+    person *p,*pp,*ppp,*tem,*per,*perr,*End;
+    tem=pp=sort_Time(Widget::head);
+    per=pp=tem;
+    ppp=pp->next;
+    while(pp->phone==ppp->phone)
+    {
+        per=ppp;
+        ppp=ppp->next;
+    }
+    tem=ppp;
+    per->next=nullptr;
+    End=p=sort_Phone(pp);
+    while(End->next!=nullptr)
+    {
+        End=End->next;
+    };
+    End->next=tem;
+    perr=End;
+    while(tem!=nullptr)
+    {
+        per=pp=tem;
+        if(tem->next==nullptr) break;
+        else ppp=pp->next;
+        while(pp->phone==ppp->phone&&ppp->next!=nullptr)
+        {
+            per=ppp;
+            ppp=ppp->next;
+        }
+        tem=ppp;
+        per->next=nullptr;
+        End=sort_Phone(pp);
+        perr->next=End;
+        while(End->next!=nullptr)
+        {
+            End=End->next;
+        }
+        End->next=tem;
+        perr=End;
+    }
+    return p;
+}
+void DisplayDialog::on_checkBox_3_stateChanged(int arg1)   //按照时间排序
+{
+    Widget::head=sort_Time(Widget::head);
+    showMessage();
+}
+
+void DisplayDialog::on_checkBox_2_stateChanged(int arg1)  //按照姓名排序
+{
+    Widget::head=sort_Name(Widget::head);
+    showMessage();
+}
+
+void DisplayDialog::on_checkBox_stateChanged(int arg1)   //按照电话号排序
+{
+    Widget::head=sort_Phone(Widget::head);
+    showMessage();
+}
+
+void DisplayDialog::on_checkBox_4_stateChanged(int arg1)
+{
+    Widget::head=sort_Time_Phone();
+    showMessage();
+}

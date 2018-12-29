@@ -13,6 +13,7 @@
 #include <QListWidgetItem>
 #include <QMessageBox>
 #include <QtDebug>
+#include "person.h"
 
 namespace Ui {
 class DisplayDialog;
@@ -29,12 +30,24 @@ public:
     ~DisplayDialog();
     void showMessage();
     void showMessage(int groupindex);
+    List sort_Time(List head);
+    List sort_Name(List head);
+    List sort_Phone(List head);
+    List sort_Time_Phone();
 private slots:
     void showContextMenuSlot(const QPoint& pos);  //显示右键菜单的槽函数
     void addItemSlot();          //添加联系人的槽函数
     void delItemSlot();          //删除联系人的槽函数
     void chaItemSlot();          //修改联系人信息的槽函数
     void on_listWidget_doubleClicked(const QModelIndex &index);
+
+    void on_checkBox_3_stateChanged(int arg1);
+
+    void on_checkBox_2_stateChanged(int arg1);
+
+    void on_checkBox_stateChanged(int arg1);
+
+    void on_checkBox_4_stateChanged(int arg1);
 
 signals:
     void SentdataSignal(int data);

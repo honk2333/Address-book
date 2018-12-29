@@ -7,6 +7,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
+#include "person.h"
 namespace Ui {
 class SearchDialog;
 }
@@ -19,7 +20,8 @@ public:
     explicit SearchDialog(QWidget *parent = nullptr);
     ~SearchDialog();
     void ClearText();
-    void FindMessenger();
+    List FindMessenger();
+    List FindNextMessenger();
     void FindMessenger(int pos);   //显示第pos行的联系人的详细信息，与上面的FindMessenger()构成重载函数
     void DeleteMessenger();
     void ChangeMessenger();
@@ -30,8 +32,11 @@ private slots:
 
     void on_ChangeButton_clicked();
 
+    void on_FindNextButton_clicked();
+
 private:
     Ui::SearchDialog *ui;
+    List L;
 };
 
 #endif // SEARCHDIALOG_H

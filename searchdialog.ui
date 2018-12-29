@@ -81,6 +81,13 @@
      </widget>
     </item>
     <item>
+     <widget class="QPushButton" name="FindNextButton">
+      <property name="text">
+       <string>下一个</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="ExitButton">
       <property name="text">
        <string>返回</string>

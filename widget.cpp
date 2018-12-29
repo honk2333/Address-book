@@ -60,3 +60,8 @@ void Widget::on_infopushButton_clicked()
 {
     InfDialog.show();
 }
+
+void Widget::on_OutputButton_clicked()
+{
+    OutDialog.show();
+}

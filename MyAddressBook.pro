@@ -33,7 +33,8 @@ SOURCES += \
     changedialog.cpp \
     person.cpp \
     groupdialog.cpp \
-    infodialog.cpp
+    infodialog.cpp \
+    outputdialog.cpp
 
 HEADERS += \
         widget.h \
@@ -43,7 +44,8 @@ HEADERS += \
     changedialog.h \
     person.h \
     groupdialog.h \
-    infodialog.h
+    infodialog.h \
+    outputdialog.h
 
 FORMS += \
         widget.ui \
@@ -52,7 +54,8 @@ FORMS += \
     searchdialog.ui \
     changedialog.ui \
     groupdialog.ui \
-    infodialog.ui
+    infodialog.ui \
+    outputdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
